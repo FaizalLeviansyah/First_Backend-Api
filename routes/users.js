@@ -13,6 +13,7 @@ let users = [];
 // Configure body-parser middleware
 // router.use(bodyParser.json());
 
+//Commit #1
 // GET /users - find all users
 router.get('/', (req, res) => {
     res.send(users);
@@ -29,6 +30,7 @@ router.post('/', (req, res) => {
     res.send(`${user.first_name} has been added to Database`);
 });
 
+//Commit #3
 //GET /users/:id - finds a specific user
 router.get('/:id', (req,res) => {
     const { id } = req.params;
@@ -37,6 +39,19 @@ router.get('/:id', (req,res) => {
 
     res.send(foundUser)
 });
+
+//Commit #4
+
+//DELETE /users/:id - deletes a specific user
+router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+
+    users = users.filter((user) => user.id !== id)
+
+    //IMPORTANT!!! To access the actual id in postman is to change (') to backticks (`)
+    res.send(`${id} deleted successfully from database`);
+});
+
 
 
 export default router
